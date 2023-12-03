@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TableController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Landing page
 Route::get('/', function () {
     return view('landingpage.home');
 });
 Route::get('/home', function () {
     return view('landingpage.home');
 });
+
+// Dashboard
+Route::get('/user',[UserController::class, 'index']);
+Route::get('/testimonials',[TestimonialController::class, 'index']);
+Route::get('/daftar-meja',[TableController::class, 'index']);
+Route::get('/daftar-reservasi',[ReservationController::class, 'index']);
+Route::get('/laporan',[ReportController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');

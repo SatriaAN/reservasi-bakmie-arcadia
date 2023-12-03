@@ -64,16 +64,28 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
                     <li class="menu-item active">
-                        <a href="index.html" class="menu-link">
+                        <a href=" {{ url('/dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
                     {{-- User --}}
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="{{ url('/user') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-user"></i>
                             <div data-i18n="Analytics">User</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url('/testimonials') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-chat"></i>
+                            <div data-i18n="Analytics">Testimonial</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ url('/laporan') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-report"></i>
+                            <div data-i18n="Analytics">Laporan</div>
                         </a>
                     </li>
                     <!-- Kelola Meja -->
@@ -85,8 +97,8 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="layouts-without-menu.html" class="menu-link">
-                                    <div data-i18n="Without menu">Without menu</div>
+                                <a href="{{ url('/daftar-meja') }}" class="menu-link">
+                                    <div data-i18n="Without menu">Daftar Meja</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -106,8 +118,8 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="layouts-without-menu.html" class="menu-link">
-                                    <div data-i18n="Without menu">Without menu</div>
+                                <a href="{{ url('/daftar-reservasi') }}" class="menu-link">
+                                    <div data-i18n="Without menu">Daftar Reservasi</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -179,7 +191,11 @@
 
                 <!-- / Navbar -->
 
-                @yield('content')
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    @yield('content')
+                </div>
+                <!-- Content wrapper -->
 
             </div>
         </div>
