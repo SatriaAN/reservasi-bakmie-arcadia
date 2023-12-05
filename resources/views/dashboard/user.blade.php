@@ -21,16 +21,14 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Agung Pratama</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>Raul Ramos</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ $user->name }}</strong>
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

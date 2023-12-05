@@ -16,21 +16,26 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>Tanggal Reservasi</th>
+                                <th>Jumlah Orang</th>
+                                <th>Nomor Meja</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Agung Pratama</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>Raul Ramos</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
+                            @foreach ($reservations as $key => $res)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ $res->name }}</strong>
+                                    </td>
+                                    <td>{{ $res->reservation_date }}</td>
+                                    <td>{{ $res->party_size }}</td>
+                                    <td>{{ $res->table_number }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

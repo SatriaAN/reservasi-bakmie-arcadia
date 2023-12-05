@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends BaseController
 {
     public function index() {
-        return view('dashboard.user');
+        $users = DB::table('users')->get();
+        return view('dashboard.user', ['users' => $users]);
     }
 }
