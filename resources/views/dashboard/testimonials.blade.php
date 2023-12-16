@@ -2,6 +2,14 @@
 
 
 @section('content')
+    <style>
+        .table td.testimoni {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+        }
+    </style>
     <!-- Content wrapper -->
     <div class="content-wrapper">
 
@@ -11,47 +19,29 @@
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Users</h5>
+                <h5 class="card-header">Testimoni</h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Profesi</th>
                                 <th>Testimoni</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>lind day</strong></td>
-                                <td>Customer</td>
-                                <td>Hemm.... kalau kesini mesti pas kepengen makan mie ayam, toppingnya melimpah dan rasanya
-                                    mantul, suasana restonya juga adem,, dan sekarang udah ada live musiknya loh.
+                            @foreach ($testimonials as $key => $testimoni)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><i
+                                            class="fab fa-angular fa-lg text-danger me-3"></i><strong>{{ $testimoni->nama }}</strong>
+                                    </td>
+                                    <td>{{ $testimoni->profesi }}</td>
+                                    <td class="testimoni">{{ $testimoni->testimoni }}</td>
+                                </tr>
+                            @endforeach
 
-                                    Bakmi Arcadia
-                                    Follow my IG@linda_lma dan tiktok @lind_day
-                                    Untuk rekomendasi kuliner lainnya</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>initial R</strong>
-                                </td>
-                                <td>Customer</td>
-                                <td>Untuk kesekian kalinya gw kesini, pas pulang kerja ga sengaja gw lewat jalur ini &
-                                    akhirnya gw mampir lagi deh. Untuk kali ini gw pesen Menu baru Spesialnya yaitu Bakmie
-                                    Hotplate Seafood...
-
-                                    Oke untuk rasa Mienya ga perlu diragukan lagi, selalu enak seperti biasanya. Seafoodnya
-                                    itu beberapa cumi digoreng tepung, lada hitamnya juga pas ga berlebihan. Beneran enak
-                                    deh rasanya...</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>Erika Amandasari</strong>
-                                </td>
-                                <td>Food Floger</td>
-                                <td>Bakmi Arcadia, salah satu tempat makan yg deket banget sama tempat kerjaan saat ini, dua
-                                    kali ke sini tetep belinya mie ayam original arcadia + bakso pangit harga nya 20 belum
-                                    termasuk PPN yaa...</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

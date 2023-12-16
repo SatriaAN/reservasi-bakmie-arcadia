@@ -11,26 +11,29 @@
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Users</h5>
+                <h5 class="card-header">Daftar Meja</h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
+                                <th>No</th>
+                                <th>Nomor Meja</th>
+                                <th>Kapasitas Meja</th>
+                                <th>Status Meja</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Agung Pratama</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>Raul Ramos</strong>
-                                </td>
-                                <td>18-12-2023 : 17:00 PM</td>
-                            </tr>
+                            @foreach ($tables as $key => $table)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ $table->table_number }}</strong>
+                                    </td>
+                                    <td>{{ $table->capacity }} </td>
+                                    <td>{{ $table->is_available }} </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>

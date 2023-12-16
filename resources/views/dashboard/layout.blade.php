@@ -63,20 +63,20 @@
                 <div class="menu-inner-shadow"></div>
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
+                    <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
                         <a href=" {{ url('/dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
                     {{-- User --}}
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('user*') ? 'active' : '' }}">
                         <a href="{{ url('/user') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-user"></i>
                             <div data-i18n="Analytics">User</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('testimonials*') ? 'active' : '' }}">
                         <a href="{{ url('/testimonials') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-chat"></i>
                             <div data-i18n="Analytics">Testimonial</div>
@@ -96,7 +96,7 @@
                         </a>
 
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item {{ request()->is('daftar-meja*') ? 'active' : '' }}">
                                 <a href="{{ url('/daftar-meja') }}" class="menu-link">
                                     <div data-i18n="Without menu">Daftar Meja</div>
                                 </a>
@@ -176,11 +176,13 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
 
-                                    <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
-                                            <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out</span>
-                                        </a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="dropdown-item submit">
+                                                <i class="bx bx-power-off me-2"></i>
+                                                <span class="align-middle">Log Out</span>
+                                            </button>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
