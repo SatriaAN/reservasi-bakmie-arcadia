@@ -7,33 +7,37 @@
 
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h1>Table Meja</h1>
+            <h1>Table Reservasi</h1>
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Daftar Meja</h5>
+                <h5 class="card-header">
+                    <box-icon name='plus-medical'></box-icon>
+                </h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
+                                <th>Tanggal Reservasi</th>
+                                <th>Jumlah Orang</th>
                                 <th>Nomor Meja</th>
-                                <th>Kapasitas Meja</th>
-                                <th>Status Meja</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($tables as $key => $table)
+                            @foreach ($reservations as $key => $res)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                        <strong>{{ $table->table_number }}</strong>
+                                        <strong>{{ $res->name }}</strong>
                                     </td>
-                                    <td>{{ $table->capacity }} </td>
-                                    <td>{{ $table->is_available }} </td>
+                                    <td>{{ $res->reservation_date }}</td>
+                                    <td>{{ $res->party_size }}</td>
+                                    <td>{{ $res->table_number }}</td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>

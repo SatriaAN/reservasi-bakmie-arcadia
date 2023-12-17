@@ -10,7 +10,7 @@ class TestimonialController extends BaseController
 {
     public function index() {
         $testimoni = DB::table('testimonials')->get();
-        return view('dashboard.testimonials', ['testimonials' => $testimoni]);
+        return view('dashboard.testimonials.testimonials', ['testimonials' => $testimoni]);
     }
 
 }
