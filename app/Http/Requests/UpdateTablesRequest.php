@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTablesRequest extends FormRequest
+class UpdateTablesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -36,6 +36,4 @@ class StoreTablesRequest extends FormRequest
             'kapasitas.required' => ':attribute Kapsitas tidak boleh kosong',
         ];
     }
-
-
 }

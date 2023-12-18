@@ -7,13 +7,10 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <h1>Edit Meja</h1>
-
             <!-- Hoverable Table rows -->
             <div class="card">
                 <div class="container px-5 my-5">
-
-
-                    <form method="POST" action="{{ url('daftar-meja') }}">
+                    <form method="POST" action="{{ url('daftar-meja/', $idMeja) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -58,9 +55,6 @@
 
             </div>
             <!-- / Content -->
-
-
-
             <div class="content-backdrop fade"></div>
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
@@ -75,7 +69,6 @@
                 </div>
             </footer>
             <!-- / Footer -->
-
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>
             <!-- / Layout wrapper -->
