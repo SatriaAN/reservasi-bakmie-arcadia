@@ -28,6 +28,7 @@
                                 <th>Nama</th>
                                 <th>Profesi</th>
                                 <th>Testimoni</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -39,6 +40,7 @@
                                     </td>
                                     <td>{{ $testimoni->profesi }}</td>
                                     <td class="testimoni">{{ $testimoni->testimoni }}</td>
+                                    <td></td>
                                 </tr>
                             @endforeach
 

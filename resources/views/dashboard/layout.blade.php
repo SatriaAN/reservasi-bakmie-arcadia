@@ -82,7 +82,7 @@
                             <div data-i18n="Analytics">Testimonial</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('laporan*') ? 'active' : '' }}">
                         <a href="{{ url('/laporan') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-report"></i>
                             <div data-i18n="Analytics">Laporan</div>
@@ -98,12 +98,12 @@
                         <ul class="menu-sub">
                             <li class="menu-item {{ request()->is('daftar-meja*') ? 'active' : '' }}">
                                 <a href="{{ url('/daftar-meja') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Daftar Meja</div>
+                                    <div data-i18n="">Daftar Meja</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a href="layouts-without-navbar.html" class="menu-link">
-                                    <div data-i18n="Without navbar">Without navbar</div>
+                                    <div data-i18n="">+ Tambah Meja</div>
                                 </a>
                             </li>
                         </ul>
@@ -119,7 +119,7 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ url('/daftar-reservasi') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Daftar Reservasi</div>
+                                    <div data-i18n="Without menu">+ Tambah Reservasi</div>
                                 </a>
                             </li>
                             <li class="menu-item">
