@@ -13,6 +13,6 @@ class ReservationController extends BaseController
                         ->join('reservations', 'tables.id', '=', 'reservations.tables_id')
                         ->get();
 
-        return view('dashboard.daftarReservasi', ['reservations' => $daftarReservasi]);
+        return view('dashboard.reservations.daftarReservasi', ['reservations' => $daftarReservasi]);
     }
 }

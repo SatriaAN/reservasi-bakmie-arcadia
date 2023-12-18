@@ -27,14 +27,23 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('landingpage.home');
 });
+Route::get('/daftar-meja/tambah', function () {
+    return view('dashboard.tables.tambahMeja');
+});
+
 
 // Dashboard
 Route::get('/user',[UserController::class, 'index']);
 Route::get('/testimonials',[TestimonialController::class, 'index']);
-Route::get('/daftar-meja',[TableController::class, 'index']);
+
+Route::resource('daftar-meja',TableController::class);
+
 Route::get('/daftar-reservasi',[ReservationController::class, 'index']);
 Route::get('/laporan',[ReportController::class, 'index']);
 
+
+
+// Admin Route
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');

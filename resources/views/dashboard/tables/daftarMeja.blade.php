@@ -7,35 +7,50 @@
 
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h1>Table Reservasi</h1>
+            <h1>Table Meja</h1>
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Users</h5>
+                <h5 class="card-header ">
+                    <a href="{{ url('/daftar-meja/tambah') }}">
+                        <button class="btn btn-sm btn-primary">
+                            <i class='bx bxs-plus-circle'></i> Tambah Meja
+                        </button>
+                    </a>
+                    <br>
+                    <br>
+                    @if (session('msg'))
+                        <div class="alert alert-success">
+                            {{ session('msg') }}
+                        </div>
+                    @endif
+                </h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Tanggal Reservasi</th>
-                                <th>Jumlah Orang</th>
                                 <th>Nomor Meja</th>
+                                <th>Kapasitas Meja</th>
+                                <th>Status Meja</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($reservations as $key => $res)
+                            @foreach ($tables as $key => $table)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                        <strong>{{ $res->name }}</strong>
+                                        <strong>{{ $table->table_number }}</strong>
                                     </td>
-                                    <td>{{ $res->reservation_date }}</td>
-                                    <td>{{ $res->party_size }}</td>
-                                    <td>{{ $res->table_number }}</td>
+                                    <td>{{ $table->capacity }} </td>
+                                    <td>{{ $table->is_available }} </td>
+                                    <td><button onclick="window.location='{{ url('daftar-meja/' . $table->id) }}'"
+                                            class="btn btn-sm btn-warning">Ubah</button> <button
+                                            class="btn btn-sm btn-danger">Hapus</button></td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>

@@ -7,26 +7,35 @@
 
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h1>Table Users</h1>
+            <h1>Table Reservasi</h1>
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Users</h5>
+                <h5 class="card-header">
+                    <box-icon name='plus-medical'></box-icon>
+                </h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>Tanggal Reservasi</th>
+                                <th>Jumlah Orang</th>
+                                <th>Nomor Meja</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($users as $user)
+                            @foreach ($reservations as $key => $res)
                                 <tr>
+                                    <td>{{ $key + 1 }}</td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                        <strong>{{ $user->name }}</strong>
+                                        <strong>{{ $res->name }}</strong>
                                     </td>
-                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $res->reservation_date }}</td>
+                                    <td>{{ $res->party_size }}</td>
+                                    <td>{{ $res->table_number }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -42,7 +51,6 @@
 
 
     <div class="content-backdrop fade"></div>
-    </div>
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
         <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
@@ -59,6 +67,5 @@
 
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
     <!-- / Layout wrapper -->
 @endsection
