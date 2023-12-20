@@ -10,6 +10,6 @@ class UserController extends BaseController
 {
     public function index() {
         $users = DB::table('users')->get();
-        return view('dashboard.user', ['users' => $users]);
+        return view('dashboard.users.user', ['users' => $users]);
     }
 }

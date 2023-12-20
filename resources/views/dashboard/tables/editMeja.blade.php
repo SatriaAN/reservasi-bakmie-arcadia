@@ -10,7 +10,7 @@
             <!-- Hoverable Table rows -->
             <div class="card">
                 <div class="container px-5 my-5">
-                    <form method="POST" action="{{ url('daftar-meja/', $idMeja) }}">
+                    <form method="POST" action="{{ url('daftar-meja/' . $idMeja) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -18,7 +18,7 @@
                             <input class="form-control @error('nomorMeja') is-invalid @enderror" id="nomorMeja"
                                 type="number" placeholder="Nomor Meja" data-sb-validations="required" name="nomorMeja"
                                 value="{{ $nomorMeja }}" />
-                            <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">Nomor Meja is required.
+                            <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">Nomor Meja Telah Terdaftar.
                             </div>
                         </div>
                         <div class="mb-3">
@@ -34,10 +34,10 @@
                             <label class="form-label" for="statusMeja">Status Meja</label>
                             <select class="form-select" id="statusMeja" aria-label="Status Meja" name="statusMeja">
                                 <option value="">-- Pilih Status Meja --</option>
-                                <option value="available" {{ old('statusMeja') == 'available' ? 'selected' : '' }}>
+                                <option value="available" {{ $statusMeja == 'available' ? 'selected' : '' }}>
                                     Tersedia
                                 </option>
-                                <option value="not_available" {{ old('statusMeja') == 'not_available' ? 'selected' : '' }}>
+                                <option value="not_available" {{ $statusMeja == 'not_available' ? 'selected' : '' }}>
                                     Tidak
                                     Tersedia</option>
                             </select>

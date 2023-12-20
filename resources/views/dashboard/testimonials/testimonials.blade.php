@@ -19,7 +19,20 @@
 
             <!-- Hoverable Table rows -->
             <div class="card">
-                <h5 class="card-header">Testimoni</h5>
+                <h5 class="card-header">
+                    <a href="{{ url('/testimonials/tambah') }}">
+                        <button class="btn btn-sm btn-primary">
+                            <i class='bx bxs-plus-circle'></i> Tambah Testimoni
+                        </button>
+                    </a>
+                </h5>
+                <div class="card-header">
+                    @if (session('msg'))
+                        <div class="alert alert-success">
+                            {{ session('msg') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -35,12 +48,21 @@
                             @foreach ($testimonials as $key => $testimoni)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><i
-                                            class="fab fa-angular fa-lg text-danger me-3"></i><strong>{{ $testimoni->nama }}</strong>
-                                    </td>
+                                    <td>{{ $testimoni->nama }}</td>
                                     <td>{{ $testimoni->profesi }}</td>
                                     <td class="testimoni">{{ $testimoni->testimoni }}</td>
-                                    <td></td>
+                                    <td><button onclick="window.location='{{ url('testimonials/' . $testimoni->id) }}'"
+                                            class="btn btn-sm btn-warning">Ubah</button>
+                                        <form onsubmit="return deleteData('{{ $testimoni->nama }}')"
+                                            style="display: inline"method="POST"
+                                            action="{{ url('testimonials/' . $testimoni->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -73,4 +95,12 @@
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
     <!-- / Layout wrapper -->
+
+    <script>
+        function deleteData(testimoni) {
+            pesan = confirm(`Yakin menghapus testimoni ${testimoni}`);
+            if (pesan) return true;
+            else return false;
+        }
+    </script>
 @endsection

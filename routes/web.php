@@ -27,20 +27,17 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('landingpage.home');
 });
-Route::get('/daftar-meja/tambah', function () {
-    return view('dashboard.tables.tambahMeja');
-});
-
 
 // Dashboard
-Route::get('/user',[UserController::class, 'index']);
-Route::get('/testimonials',[TestimonialController::class, 'index']);
-
-Route::resource('daftar-meja',TableController::class);
-
-Route::get('/daftar-reservasi',[ReservationController::class, 'index']);
-Route::get('/laporan',[ReportController::class, 'index']);
-
+Route::get('/daftar-meja/tambah', function () {
+    return view('dashboard.tables.tambahMeja');
+})->middleware(['auth', 'verified']);
+Route::get('/testimonials/tambah', function () {
+    return view('dashboard.testimonials.tambahTestimonials');
+})->middleware(['auth', 'verified']);
+// Route::get('/daftar-reservasi/tambah', function () {
+//     return view('dashboard.reservations.tambahReservasi');
+// })->middleware(['auth', 'verified']);
 
 
 // Admin Route
@@ -49,6 +46,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/user',[UserController::class, 'index']);
+    Route::get('/laporan',[ReportController::class, 'index']);
+    Route::get('/daftar-reservasi/tambah',[ReservationController::class,'create']);
+    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('daftar-meja',TableController::class);  
+    Route::resource('daftar-reservasi',ReservationController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

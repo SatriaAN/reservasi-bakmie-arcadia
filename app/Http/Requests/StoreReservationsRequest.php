@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateTablesRequest extends FormRequest
+class StoreReservationsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,30 +22,30 @@ class UpdateTablesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomorMeja' => [
-                'required',
-                'numeric',
-                Rule::unique('tables','table_number')->ignore($this->idMeja,'id')
-            ],
-            'kapasitasMeja' => 'required|numeric|max:6',
-            'statusMeja' => 'required',
+            'namaPelanggan' => 'required',
+            'tanggalJam' => 'required',
+            'jumlahOrang' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nomorMeja.unique' => ':attribute Nomor Meja Sudah Terdaftar',
-            'nomorMeja.required' => ':attribute Nomor Meja Tidak Boleh Kosong',
-            'kapasitas.required' => ':attribute Kapsitas tidak boleh kosong',
+            'nomorMeja.unique' => ':attribute sudah Terdaftar',
+            'nomorMeja.required' => ':attribute tidak Boleh Kosong',
+            'kapasitasMeja.required' => ':attribute tidak boleh kosong',
+            'kapasitasMeja.max:6' => ':attribute maksimal 6',
+            'statusMeja.required' => ':attribute belum dipilih'
         ];
     }
+
 
     public function attributes(): array
     {
         return [
             'nomorMeja' => 'Nomor Meja',
-            'kapasitasMeja' => 'Kapasitas Meja'
+            'kapasitasMeja' => 'Kapasitas Meja',
+            'statusMeja' => 'Status meja'
         ];
     }
 }

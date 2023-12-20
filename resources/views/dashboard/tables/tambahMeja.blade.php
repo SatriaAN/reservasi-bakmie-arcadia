@@ -7,12 +7,9 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <h1>Tambah Meja</h1>
-
             <!-- Hoverable Table rows -->
             <div class="card">
                 <div class="container px-5 my-5">
-
-
                     <form method="POST" action="{{ url('daftar-meja') }}">
                         @csrf
                         <div class="mb-3">
@@ -20,21 +17,25 @@
                             <input class="form-control @error('nomorMeja') is-invalid @enderror" id="nomorMeja"
                                 type="number" placeholder="Nomor Meja" data-sb-validations="required" name="nomorMeja"
                                 value="{{ old('nomorMeja') }}" />
-                            <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">Nomor Meja is required.
-                            </div>
+                            @error('nomorMeja')
+                                <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="kapasitasMeja">Kapasitas Meja</label>
                             <input class="form-control @error('kapasitasMeja') is-invalid @enderror" id="kapasitasMeja"
                                 type="number" placeholder="Kapasitas Meja" data-sb-validations="required"
                                 name="kapasitasMeja" value="{{ old('kapasitasMeja') }}" />
-                            <div class="invalid-feedback" data-sb-feedback="kapasitasMeja:required">Kapasitas Meja is
-                                required.
-                            </div>
+                            @error('kapasitasMeja')
+                                <div class="invalid-feedback" data-sb-feedback="kapasitasMeja:required">{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="statusMeja">Status Meja</label>
-                            <select class="form-select" id="statusMeja" aria-label="Status Meja" name="statusMeja">
+                            <select class="form-select @error('statusMeja') is-invalid @enderror" id="statusMeja"
+                                aria-label="Status Meja" name="statusMeja">
                                 <option value="">-- Pilih Status Meja --</option>
                                 <option value="available" {{ old('statusMeja') == 'available' ? 'selected' : '' }}>
                                     Tersedia
@@ -43,6 +44,10 @@
                                     Tidak
                                     Tersedia</option>
                             </select>
+                            @error('statusMeja')
+                                <div class="invalid-feedback" data-sb-feedback="statusMeja:required">{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-success btn-lg" type="submit">Submit</button>
@@ -78,4 +83,6 @@
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>
             <!-- / Layout wrapper -->
-        @endsection
+        </div>
+    </div>
+@endsection

@@ -49,7 +49,14 @@ class TableController extends BaseController
         $data->is_available = $request->statusMeja;
         $data->save();
 
-        return redirect('daftar-meja')->with('msg','Data meja'. $data->table_number .' berhasila diubah');
+        return redirect('daftar-meja')->with('msg','Data meja '. $data->table_number .' berhasil diubah');
 
+    }
+
+    public function destroy(Table $table, $id) {
+        $data = $table->find($id);
+        $data->delete();
+
+        return redirect('daftar-meja')->with('msg','Data meja '. $data->table_number .' berhasil dihapus');
     }
 }

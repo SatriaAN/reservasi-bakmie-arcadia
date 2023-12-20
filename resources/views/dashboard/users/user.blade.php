@@ -16,7 +16,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Username</th>
                                 <th>Email</th>
                             </tr>
                         </thead>

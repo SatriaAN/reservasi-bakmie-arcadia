@@ -12,17 +12,31 @@
             <!-- Hoverable Table rows -->
             <div class="card">
                 <h5 class="card-header">
-                    <box-icon name='plus-medical'></box-icon>
+                    <a href="{{ url('/daftar-reservasi/tambah') }}">
+                        <button class="btn btn-sm btn-primary">
+                            <i class='bx bxs-plus-circle'></i> Tambah Reservasi
+                        </button>
+                    </a>
                 </h5>
+                <div class="card-header">
+                    @if (session('msg'))
+                        <div class="alert alert-success">
+                            {{ session('msg') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Email</th>
+                                <th>Nomor Handphone</th>
                                 <th>Tanggal Reservasi</th>
                                 <th>Jumlah Orang</th>
                                 <th>Nomor Meja</th>
+                                <th>Catatan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -30,12 +44,25 @@
                             @foreach ($reservations as $key => $res)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                        <strong>{{ $res->name }}</strong>
-                                    </td>
+                                    <td><strong>{{ $res->name }}</strong></td>
+                                    <td>{{ $res->email }}</td>
+                                    <td>{{ $res->no_hp }}</td>
                                     <td>{{ $res->reservation_date }}</td>
                                     <td>{{ $res->party_size }}</td>
                                     <td>{{ $res->table_number }}</td>
+                                    <td>{{ $res->pesan }}</td>
+                                    <td><button onclick="window.location='{{ url('daftar-reservasi/' . $res->id) }}'"
+                                            class="btn btn-sm btn-warning">Ubah</button>
+                                        <form onsubmit="return deleteData('{{ $res->name }}')"
+                                            style="display: inline"method="POST"
+                                            action="{{ url('daftar-reservasi/' . $res->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

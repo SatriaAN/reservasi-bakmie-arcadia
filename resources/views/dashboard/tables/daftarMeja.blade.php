@@ -17,14 +17,14 @@
                             <i class='bx bxs-plus-circle'></i> Tambah Meja
                         </button>
                     </a>
-                    <br>
-                    <br>
+                </h5>
+                <div class="card-header">
                     @if (session('msg'))
                         <div class="alert alert-success">
                             {{ session('msg') }}
                         </div>
                     @endif
-                </h5>
+                </div>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -46,8 +46,17 @@
                                     <td>{{ $table->capacity }} </td>
                                     <td>{{ $table->is_available }} </td>
                                     <td><button onclick="window.location='{{ url('daftar-meja/' . $table->id) }}'"
-                                            class="btn btn-sm btn-warning">Ubah</button> <button
-                                            class="btn btn-sm btn-danger">Hapus</button></td>
+                                            class="btn btn-sm btn-warning">Ubah</button>
+                                        <form onsubmit="return deleteData('{{ $table->table_number }}')"
+                                            style="display: inline"method="POST"
+                                            action="{{ url('daftar-meja/' . $table->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -81,4 +90,12 @@
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
     <!-- / Layout wrapper -->
+
+    <script>
+        function deleteData(meja) {
+            pesan = confirm(`Yakin menghapus meja ${meja}`);
+            if (pesan) return true;
+            else return false;
+        }
+    </script>
 @endsection

@@ -119,12 +119,12 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ url('/daftar-reservasi') }}" class="menu-link">
-                                    <div data-i18n="Without menu">+ Tambah Reservasi</div>
+                                    <div data-i18n="Without menu">Daftar Reservasi</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a href="layouts-without-navbar.html" class="menu-link">
-                                    <div data-i18n="Without navbar">Without navbar</div>
+                                    <div data-i18n="Without navbar">+ Tambah Reservasi</div>
                                 </a>
                             </li>
                         </ul>
