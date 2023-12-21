@@ -23,19 +23,27 @@ class StoreReservationsRequest extends FormRequest
     {
         return [
             'namaPelanggan' => 'required',
+            'email' => 'required|email',
+            'noHp' => 'required',
             'tanggalJam' => 'required',
             'jumlahOrang' => 'required',
+            'nomorMeja' => 'required',
+            'catatan' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nomorMeja.unique' => ':attribute sudah Terdaftar',
-            'nomorMeja.required' => ':attribute tidak Boleh Kosong',
-            'kapasitasMeja.required' => ':attribute tidak boleh kosong',
-            'kapasitasMeja.max:6' => ':attribute maksimal 6',
-            'statusMeja.required' => ':attribute belum dipilih'
+            'namaPelanggan.required' => ':attribute tidak Boleh Kosong',
+            'email.required' => ':attribute tidak boleh kosong',
+            'noHp.max:14' => ':attribute maksimal 14',
+            'noHp.required' => ':attribute tidak boleh kosong',
+            'tanggalJam.required' => ':attribute belum dipilih',
+            'jumlahOrang.required' => ':attribute tidak boleh kosong',
+            'nomorMeja.required' => ':attribute belum dipilih',
+            'catatan.required' => ':attribute tidak boleh kosong',
+            'catatan.max:150' => ':attribute melebihi maksimum karakter',
         ];
     }
 
@@ -43,9 +51,13 @@ class StoreReservationsRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'namaPelanggan' => 'Nama',
+            'email' => 'Email',
+            'noHp' => 'Nomor Handphone',
+            'tanggalJam' => 'Tanggal & jam',
+            'jumlahOrang' => 'Jumlah orang',
             'nomorMeja' => 'Nomor Meja',
-            'kapasitasMeja' => 'Kapasitas Meja',
-            'statusMeja' => 'Status meja'
+            'catatan' => 'Catatan',
         ];
     }
 }

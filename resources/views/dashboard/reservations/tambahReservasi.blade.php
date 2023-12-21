@@ -11,7 +11,8 @@
             <div class="card">
                 <div class="container px-5 my-5">
                     <div class="container px-5 my-5">
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <form method="POST" action="{{ url('daftar-reservasi') }}">
+                            @csrf
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('namaPelanggan') is-invalid @enderror" id="namaPelanggan"
                                     type="text" placeholder="Nama" data-sb-validations="required" name="namaPelanggan"
@@ -34,7 +35,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('noHp') is-invalid @enderror" id="noHp"
-                                    type="text" placeholder="Nomor Handphone" data-sb-validations="required"
+                                    type="number" placeholder="Nomor Handphone" data-sb-validations="required"
                                     name="noHp" value="{{ old('noHp') }}" />
                                 <label for="noHp">Nomor Handphone</label>
                                 @error('noHp')
@@ -44,7 +45,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('tanggalJam') is-invalid @enderror" id="tanggalJam"
-                                    type="time" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
+                                    type="datetime-local" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
                                     name="tanggalJam" value="{{ old('tanggalJam') }}" />
                                 <label for="tanggalJam">Tanggal &amp; Jam</label>
                                 @error('tanggalJam')
@@ -67,7 +68,7 @@
                                     aria-label="Nomor Meja" name="nomorMeja">
                                     <option value="">-- Pilih Nomor Meja</option>
                                     @foreach ($reservations as $res)
-                                        <option value="{{ $res->table_number }}"
+                                        <option value="{{ $res->table_id }}"
                                             {{ old('nomorMeja') == $res->table_number ? 'selected' : '' }}>
                                             {{ $res->table_number }}
                                         </option>
