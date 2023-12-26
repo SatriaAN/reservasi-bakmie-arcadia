@@ -23,6 +23,7 @@ class ReservationController extends BaseController
 
         return view('dashboard.reservations.tambahReservasi', ['reservations' => $reservasi ]);
 
+
     }
 
     public function store(StoreReservationsRequest $request) {
@@ -30,13 +31,12 @@ class ReservationController extends BaseController
 
         $reservation = new Reservation;
         $reservation->name = $request->namaPelanggan;
-        $reservation->email = $request->email;
         $reservation->no_hp = $request->noHp;
         $reservation->reservation_date = $request->tanggalJam;
         $reservation->party_size = $request->jumlahOrang;
         $reservation->table_number = $request->nomorMeja;
         $reservation->save();
 
-        return redirect('reservations')->with('msg','Berhasil menambahkan Reservasi');
+        return redirect('daftar-reservasi')->with('msg','Berhasil menambahkan Reservasi');
     }
 }

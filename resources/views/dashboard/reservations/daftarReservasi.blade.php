@@ -31,7 +31,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
                                 <th>Nomor Handphone</th>
                                 <th>Tanggal Reservasi</th>
                                 <th>Jumlah Orang</th>
@@ -45,7 +44,6 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><strong>{{ $res->name }}</strong></td>
-                                    <td>{{ $res->email }}</td>
                                     <td>{{ $res->no_hp }}</td>
                                     <td>{{ $res->reservation_date }}</td>
                                     <td>{{ $res->party_size }}</td>
