@@ -24,16 +24,6 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control @error('email') is-invalid @enderror" id="email"
-                                    type="text" placeholder="Email" data-sb-validations="required" name="email"
-                                    value="{{ old('email') }}" />
-                                <label for="email">Email</label>
-                                @error('email')
-                                    <div class="invalid-feedback" data-sb-feedback="email:required">{{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-floating mb-3">
                                 <input class="form-control @error('noHp') is-invalid @enderror" id="noHp"
                                     type="number" placeholder="Nomor Handphone" data-sb-validations="required"
                                     name="noHp" value="{{ old('noHp') }}" />
@@ -45,11 +35,21 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('tanggalJam') is-invalid @enderror" id="tanggalJam"
-                                    type="datetime-local" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
+                                    type="date" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
                                     name="tanggalJam" value="{{ old('tanggalJam') }}" />
                                 <label for="tanggalJam">Tanggal &amp; Jam</label>
                                 @error('tanggalJam')
                                     <div class="invalid-feedback" data-sb-feedback="tanggalJam:required">{{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control @error('jam') is-invalid @enderror" id="jam" type="time"
+                                    placeholder="Jam Reservasi" data-sb-validations="required" name="jam"
+                                    value="{{ old('jam') }}" />
+                                <label for="jam">Jam Reservasi</label>
+                                @error('jam')
+                                    <div class="invalid-feedback" data-sb-feedback="jam:required">{{ $message }}
                                     </div>
                                 @enderror
                             </div>
@@ -68,7 +68,7 @@
                                     aria-label="Nomor Meja" name="nomorMeja">
                                     <option value="">-- Pilih Nomor Meja</option>
                                     @foreach ($reservations as $res)
-                                        <option value="{{ $res->table_id }}"
+                                        <option value="{{ $res->table_number }}"
                                             {{ old('nomorMeja') == $res->table_number ? 'selected' : '' }}>
                                             {{ $res->table_number }}
                                         </option>

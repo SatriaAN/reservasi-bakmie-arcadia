@@ -19,7 +19,7 @@ class ReservationController extends BaseController
 
     public function create() {
         $daftarReservasi = new Reservation;
-        $reservasi = $daftarReservasi->dataMeja();
+        $reservasi = $daftarReservasi->dataReservations();
 
         return view('dashboard.reservations.tambahReservasi', ['reservations' => $reservasi ]);
 
