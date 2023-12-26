@@ -46,12 +46,24 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    //User
     Route::get('/user',[UserController::class, 'index']);
+
+    //Laporan
     Route::get('/laporan',[ReportController::class, 'index']);
+
+    //Reservasi
     Route::get('/daftar-reservasi/tambah',[ReservationController::class,'create']);
-    Route::resource('testimonials', TestimonialController::class);
-    Route::resource('daftar-meja',TableController::class);  
     Route::resource('daftar-reservasi',ReservationController::class);
+    Route::post('/daftar-reservasi/tambah',[ReservationController::class, 'store'])->name('store.reservation');
+
+    //Testimoni
+    Route::resource('testimonials', TestimonialController::class);
+
+    //Daftar Meja
+    Route::resource('daftar-meja',TableController::class);
+
+    //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

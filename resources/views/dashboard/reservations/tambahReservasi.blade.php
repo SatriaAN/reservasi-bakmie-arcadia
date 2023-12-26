@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="container px-5 my-5">
                     <div class="container px-5 my-5">
-                        <form method="POST" action="{{ url('daftar-reservasi') }}">
+                        <form method="POST" action="{{ route('store.reservation') }}">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('namaPelanggan') is-invalid @enderror" id="namaPelanggan"
@@ -37,7 +37,7 @@
                                 <input class="form-control @error('tanggalJam') is-invalid @enderror" id="tanggalJam"
                                     type="date" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
                                     name="tanggalJam" value="{{ old('tanggalJam') }}" />
-                                <label for="tanggalJam">Tanggal &amp; Jam</label>
+                                <label for="tanggalJam">Tanggal Reservasi</label>
                                 @error('tanggalJam')
                                     <div class="invalid-feedback" data-sb-feedback="tanggalJam:required">{{ $message }}
                                     </div>
@@ -54,9 +54,19 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control @error('jumlahOrang') is-invalid @enderror" id="jumlahOrang"
+                                <select class="form-select @error('jumlahOrang') is-invalid @enderror" id="jumlahOrang"
+                                    data-sb-validations="required" name="jumlahOrang" value="{{ old('jumlahOrang') }}">
+                                    <option value="">-- Pilih Jumlah Orang --</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                                {{-- <input class="form-control @error('jumlahOrang') is-invalid @enderror" id="jumlahOrang"
                                     type="text" placeholder="Jumlah Orang" data-sb-validations="required"
-                                    name="jumlahOrang" value="{{ old('jumlahOrang') }}" />
+                                    name="jumlahOrang" value="{{ old('jumlahOrang') }}" /> --}}
                                 <label for="jumlahOrang">Jumlah Orang</label>
                                 @error('jumlahOrang')
                                     <div class="invalid-feedback" data-sb-feedback="jumlahOrang:required">{{ $message }}
@@ -66,7 +76,7 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select @error('nomorMeja') is-invalid @enderror" id="nomorMeja"
                                     aria-label="Nomor Meja" name="nomorMeja">
-                                    <option value="">-- Pilih Nomor Meja</option>
+                                    <option value="">-- Pilih Nomor Meja --</option>
                                     @foreach ($reservations as $res)
                                         <option value="{{ $res->table_number }}"
                                             {{ old('nomorMeja') == $res->table_number ? 'selected' : '' }}>
@@ -81,11 +91,11 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control  @error('catatan') is-invalid @enderror" id="catatan" type="text"
-                                    placeholder="Testimoni" style="height: 10rem;" data-sb-validations="required" name="catatan"> {{ old('catatan') }}</textarea>
+                                <textarea class="form-control" id="catatan" type="text"
+                                    placeholder="Testimoni" style="height: 10rem;" name="catatan"> {{ old('catatan') }}</textarea>
                                 <label for="testimoni">Testimoni</label>
                                 @error('catatan')
-                                    <div class="invalid-feedback" data-sb-feedback="testimoni:required">{{ $message }}
+                                    <div class="invalid-feedback" >{{ $message }}
                                     </div>
                                 @enderror
                             </div>
