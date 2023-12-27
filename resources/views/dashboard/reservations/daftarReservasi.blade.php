@@ -12,7 +12,7 @@
             <!-- Hoverable Table rows -->
             <div class="card">
                 <h5 class="card-header">
-                    <a href="{{ url('/daftar-reservasi/tambah') }}">
+                    <a href="{{ url('/daftar-reservasi/create') }}">
                         <button class="btn btn-sm btn-primary">
                             <i class='bx bxs-plus-circle'></i> Tambah Reservasi
                         </button>
@@ -47,7 +47,7 @@
                                     <td>{{ $res->no_hp }}</td>
                                     <td>{{ $res->reservation_date }}</td>
                                     <td>{{ $res->party_size }}</td>
-                                    <td>{{ $res->table_number }}</td>
+                                    <td>{{ $res->tables->table_number }}</td>
                                     <td>{{ $res->pesan }}</td>
                                     <td><button onclick="window.location='{{ url('daftar-reservasi/' . $res->id) }}'"
                                             class="btn btn-sm btn-warning">Ubah</button>
@@ -93,4 +93,11 @@
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
     <!-- / Layout wrapper -->
+    <script>
+        function deleteData(reservasi) {
+            pesan = confirm(`Yakin menghapus reservasi ${reservasi}`);
+            if (pesan) return true;
+            else return false;
+        }
+    </script>
 @endsection

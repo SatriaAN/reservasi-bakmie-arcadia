@@ -35,9 +35,9 @@ Route::get('/daftar-meja/tambah', function () {
 Route::get('/testimonials/tambah', function () {
     return view('dashboard.testimonials.tambahTestimonials');
 })->middleware(['auth', 'verified']);
-// Route::get('/daftar-reservasi/tambah', function () {
-//     return view('dashboard.reservations.tambahReservasi');
-// })->middleware(['auth', 'verified']);
+Route::get('/daftar-reservasi/tambah', function () {
+    return view('dashboard.reservations.tambahReservasi');
+})->middleware(['auth', 'verified']);
 
 
 // Admin Route
@@ -53,9 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan',[ReportController::class, 'index']);
 
     //Reservasi
-    Route::get('/daftar-reservasi/tambah',[ReservationController::class,'create']);
     Route::resource('daftar-reservasi',ReservationController::class);
-    Route::post('/daftar-reservasi/tambah',[ReservationController::class, 'store'])->name('store.reservation');
 
     //Testimoni
     Route::resource('testimonials', TestimonialController::class);

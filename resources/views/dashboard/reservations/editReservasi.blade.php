@@ -11,12 +11,13 @@
             <div class="card">
                 <div class="container px-5 my-5">
                     <div class="container px-5 my-5">
-                        <form method="POST" action="{{ url('daftar-reservasi') }}">
+                        <form method="POST" action="{{ url('daftar-reservasi/' . $idReservasi) }}">
                             @csrf
+                            @method('PUT')
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('namaPelanggan') is-invalid @enderror" id="namaPelanggan"
                                     type="text" placeholder="Nama" data-sb-validations="required" name="namaPelanggan"
-                                    value="{{ old('namaPelanggan') }}" />
+                                    value="{{ $namaPelanggan }}" />
                                 <label for="namaPelanggan">Nama</label>
                                 @error('namaPelanggan')
                                     <div class="invalid-feedback" data-sb-feedback="namaPelanggan:required">{{ $message }}
@@ -26,7 +27,7 @@
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('noHp') is-invalid @enderror" id="noHp"
                                     type="number" placeholder="Nomor Handphone" data-sb-validations="required"
-                                    name="noHp" value="{{ old('noHp') }}" />
+                                    name="noHp" value="{{ $noHp }}" />
                                 <label for="noHp">Nomor Handphone</label>
                                 @error('noHp')
                                     <div class="invalid-feedback" data-sb-feedback="noHp:required">{{ $message }}
@@ -36,7 +37,7 @@
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('tanggalJam') is-invalid @enderror" id="tanggalJam"
                                     type="date" placeholder="Tanggal &amp; Jam" data-sb-validations="required"
-                                    name="tanggalJam" value="{{ old('tanggalJam') }}" />
+                                    name="tanggalJam" value="{{ $tanggalJam }}" />
                                 <label for="tanggalJam">Tanggal Reservasi</label>
                                 @error('tanggalJam')
                                     <div class="invalid-feedback" data-sb-feedback="tanggalJam:required">{{ $message }}
@@ -46,7 +47,7 @@
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('jam') is-invalid @enderror" id="jam" type="time"
                                     placeholder="Jam Reservasi" data-sb-validations="required" name="jam"
-                                    value="{{ old('jam') }}" />
+                                    value="{{ $jam }}" />
                                 <label for="jam">Jam Reservasi</label>
                                 @error('jam')
                                     <div class="invalid-feedback" data-sb-feedback="jam:required">{{ $message }}
@@ -58,8 +59,7 @@
                                     data-sb-validations="required" name="jumlahOrang">
                                     <option value="">-- Pilih Jumlah Orang --</option>
                                     @foreach (range(1, 6) as $orang)
-                                        <option value="{{ $orang }}"
-                                            {{ old('jumlahOrang') == $orang ? 'selected' : '' }}>
+                                        <option value="{{ $orang }}" {{ $jumlahOrang == $orang ? 'selected' : '' }}>
                                             {{ $orang }}
                                         </option>
                                     @endforeach
@@ -76,7 +76,7 @@
                                     <option value="">-- Pilih Nomor Meja --</option>
                                     @foreach ($tables as $table)
                                         <option value="{{ $table->id }}"
-                                            {{ old('nomorMeja') == $table->id ? 'selected' : '' }}>
+                                            {{ $nomorMeja == $table->id ? 'selected' : '' }}>
                                             {{ $table->table_number }}
                                         </option>
                                     @endforeach
@@ -88,9 +88,9 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="catatan" type="text" placeholder="Testimoni" style="height: 10rem;"
-                                    name="catatan"> {{ old('catatan') }}</textarea>
-                                <label for="testimoni">Testimoni</label>
+                                <textarea class="form-control" id="catatan" type="text" placeholder="Catatan" style="height: 10rem;"
+                                    name="catatan"> {{ $catatan }}</textarea>
+                                <label for="Catatan">Catatan</label>
                                 @error('catatan')
                                     <div class="invalid-feedback">{{ $message }}
                                     </div>

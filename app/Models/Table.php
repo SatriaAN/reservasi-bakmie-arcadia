@@ -16,7 +16,7 @@ class Table extends Model
     public $timestamps = false;
 
     public function reservasi() {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class, 'table_id');
     }
-
+    
 }
