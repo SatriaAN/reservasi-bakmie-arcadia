@@ -12,7 +12,6 @@
                     </p>
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         <a href="#book-a-table" class="btn-book-a-table">Book a Table</a>
-
                     </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -222,56 +221,105 @@
                         data-aos-delay="200"></div>
 
                     <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form"
-                            data-aos="fade-up" data-aos-delay="100">
-                            <div class="row gy-4">
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Nama" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                                    <div class="validate"></div>
+                        <form method="POST" action="{{ url('home') }}" data-aos="fade-up" data-aos-delay="100">
+                            @csrf
+                            <div class="php-email-form">
+                                <div class="row gy-4">
+                                    <div class="col-lg-4 col-md-6">
+                                        <input class="form-control @error('namaPelanggan') is-invalid @enderror"
+                                            id="namaPelanggan" type="text" placeholder="Nama"
+                                            data-sb-validations="required" name="namaPelanggan"
+                                            value="{{ old('namaPelanggan') }}" />
+                                        @error('namaPelanggan')
+                                            <div class="invalid-feedback" data-sb-feedback="namaPelanggan:required">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <input class="form-control @error('noHp') is-invalid @enderror" id="noHp"
+                                            type="number" placeholder="Nomor Handphone" data-sb-validations="required"
+                                            name="noHp" value="{{ old('noHp') }}" />
+                                        @error('noHp')
+                                            <div class="invalid-feedback" data-sb-feedback="noHp:required">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <select class="form-select @error('nomorMeja') is-invalid @enderror"
+                                            id="nomorMeja" aria-label="Nomor Meja" name="nomorMeja">
+                                            <option value="">-- Pilih Nomor Meja --</option>
+                                            @foreach ($tables as $table)
+                                                <option value="{{ $table->id }}"
+                                                    {{ old('nomorMeja') == $table->id ? 'selected' : '' }}>
+                                                    {{ $table->table_number }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('nomorMeja')
+                                            <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <input class="form-control @error('tanggalJam') is-invalid @enderror"
+                                            id="tanggalJam" type="date" placeholder="Tanggal "
+                                            data-sb-validations="required" name="tanggalJam"
+                                            value="{{ old('tanggalJam') }}" />
+                                        @error('tanggalJam')
+                                            <div class="invalid-feedback" data-sb-feedback="tanggalJam:required">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <input class="form-control @error('jam') is-invalid @enderror" id="jam"
+                                            type="time" placeholder="Jam Reservasi" data-sb-validations="required"
+                                            name="jam" value="{{ old('jam') }}" />
+                                        @error('jam')
+                                            <div class="invalid-feedback" data-sb-feedback="jam:required">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <select class="form-select @error('jumlahOrang') is-invalid @enderror"
+                                            id="jumlahOrang" data-sb-validations="required" name="jumlahOrang">
+                                            <option value="">-- Pilih Jumlah Orang --</option>
+                                            @foreach (range(1, 6) as $orang)
+                                                <option value="{{ $orang }}"
+                                                    {{ old('jumlahOrang') == $orang ? 'selected' : '' }}>
+                                                    {{ $orang }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('jumlahOrang')
+                                            <div class="invalid-feedback" data-sb-feedback="jumlahOrang:required">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="" class="form-control" name="email" id="email"
-                                        placeholder="Nomor Meja" data-rule="email" data-msg="Please enter a valid email">
-                                    <div class="validate"></div>
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="catatan" rows="5" placeholder="Pesan">{{ old('catatan') }}</textarea>
+                                    @error('catatan')
+                                        <div class="invalid-feedback" data-sb-feedback="catatan:required">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                        placeholder="Nomor Handphone" data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars">
-                                    <div class="validate"></div>
+                                <div class="mb-3">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your booking request was sent. We will call back or send an
+                                        Email
+                                        to confirm your reservation. Thank you!</div>
                                 </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" name="date" class="form-control" id="date"
-                                        placeholder="Tanggal" data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars">
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" class="form-control" name="time" id="time"
-                                        placeholder="Waktu" data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars">
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="number" class="form-control" name="people" id="people"
-                                        placeholder="Jumlah orang" data-rule="minlen:1"
-                                        data-msg="Please enter at least 1 chars">
-                                    <div class="validate"></div>
-                                </div>
+                                <div class="text-center"><button type="submit">Submit Reservasi</button></div>
                             </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Pesan"></textarea>
-                                <div class="validate"></div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your booking request was sent. We will call back or send an Email
-                                    to confirm your reservation. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Submit Reservasi</button></div>
+
                         </form>
+
                     </div><!-- End Reservation Form -->
 
                 </div>
@@ -340,31 +388,7 @@
 
                 </div>
 
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
-                    <div class="row">
-                        <div class="col-xl-6 form-group">
-                            <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Your Name" required>
-                        </div>
-                        <div class="col-xl-6 form-group">
-                            <input type="email" class="form-control" name="email" id="email"
-                                placeholder="Your Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="my-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                    </div>
-                    <div class="text-center"><button type="submit">Send Message</button></div>
-                </form><!--End Contact Form -->
+
 
             </div>
         </section><!-- End Contact Section -->

@@ -33,7 +33,6 @@ class ReservationController extends BaseController
         $reservation->tables_id = $request->nomorMeja;
         $reservation->pesan = $request->catatan;
         $reservation->save();
-        // dd($reservation);
         return redirect('daftar-reservasi')->with('msg','Berhasil menambahkan Reservasi');
     }
 

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HasilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReservationController;
@@ -27,6 +30,12 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('landingpage.home');
 });
+Route::resource('hasil', HasilController::class );
+Route::resource('home', HomeController::class);
+
+Route::get('/reservasi', function () {
+    return view('landingpage.hasil-reservasi');
+});
 
 // Dashboard
 Route::get('/daftar-meja/tambah', function () {
@@ -40,10 +49,10 @@ Route::get('/daftar-reservasi/tambah', function () {
 })->middleware(['auth', 'verified']);
 
 
-// Admin Route
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// // Admin Route
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     //User
@@ -51,6 +60,9 @@ Route::middleware('auth')->group(function () {
 
     //Laporan
     Route::get('/laporan',[ReportController::class, 'index']);
+
+    //Dashboard
+    Route::resource('/dashboard', DashboardController::class);
 
     //Reservasi
     Route::resource('daftar-reservasi',ReservationController::class);

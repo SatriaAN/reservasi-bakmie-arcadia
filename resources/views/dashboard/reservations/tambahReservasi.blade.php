@@ -88,9 +88,9 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="catatan" type="text" placeholder="Testimoni" style="height: 10rem;"
+                                <textarea class="form-control" id="catatan" type="text" placeholder="Catatan" style="height: 10rem;"
                                     name="catatan"> {{ old('catatan') }}</textarea>
-                                <label for="testimoni">Testimoni</label>
+                                <label for="catatan">Catatan</label>
                                 @error('catatan')
                                     <div class="invalid-feedback">{{ $message }}
                                     </div>
