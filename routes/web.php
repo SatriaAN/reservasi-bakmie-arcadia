@@ -24,13 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // Landing page
-Route::get('/', function () {
-    return view('landingpage.home');
-});
-Route::get('/home', function () {
-    return view('landingpage.home');
-});
-Route::resource('hasil', HasilController::class );
+Route::resource('/', HomeController::class);
+Route::resource('hasil', HasilController::class);
 Route::resource('home', HomeController::class);
 
 Route::get('/reservasi', function () {
@@ -66,6 +61,8 @@ Route::middleware('auth')->group(function () {
 
     //Reservasi
     Route::resource('daftar-reservasi',ReservationController::class);
+    Route::put('/daftar-reservasi/{id}/accept', [ReservationController::class, 'accept'])->name('daftar-reservasi.accept');
+    Route::put('/daftar-reservasi/{id}/reject', [ReservationController::class, 'reject'])->name('daftar-reservasi.reject');
 
     //Testimoni
     Route::resource('testimonials', TestimonialController::class);

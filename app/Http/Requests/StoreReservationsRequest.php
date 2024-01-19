@@ -24,7 +24,7 @@ class StoreReservationsRequest extends FormRequest
         return [
             'namaPelanggan' => 'required',
             'noHp' => 'required',
-            'tanggalJam' => 'required',
+            'tanggalJam' => 'required|after:today',
             'jam' => 'required',
             'jumlahOrang' => 'required',
             'nomorMeja' => 'required',
@@ -38,7 +38,9 @@ class StoreReservationsRequest extends FormRequest
             'noHp.max:14' => ':attribute maksimal 14',
             'noHp.required' => ':attribute tidak boleh kosong',
             'tanggalJam.required' => ':attribute belum dipilih',
+            'tanggalJam.after' => ':attribute tidak bisa hari sebelumnya',
             'jam.required' => ':attribute belum dipilih',
+            'jam.date_format:H:i' => ':attribute Harus sesuai dengan waktu buka restoran Bakmie Arcadia',
             'jumlahOrang.required' => ':attribute tidak boleh kosong',
             'nomorMeja.required' => ':attribute belum dipilih',
             'catatan.max:150' => ':attribute melebihi maksimum karakter',

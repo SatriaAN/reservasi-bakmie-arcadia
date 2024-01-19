@@ -21,9 +21,7 @@
             </div>
         </div>
     </section><!-- End Hero Section -->
-
     <main id="main">
-
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
@@ -66,10 +64,6 @@
 
             </div>
         </section><!-- End About Section -->
-
-
-
-
         <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
@@ -104,8 +98,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 text-center">
-                                        <img src="assets/img/testimonials/testimonials-1.jpg"
-                                            class="img-fluid testimonial-img" alt="">
+                                        {{-- <img src="{{ asset('assets/img/testimonials/testimonials-1.jpg') }}"
+                                            alt="Testimonial 1"> --}}
                                     </div>
                                 </div>
                             </div>
@@ -133,8 +127,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 text-center">
-                                        <img src="assets/img/testimonials/testimonials-2.jpg"
-                                            class="img-fluid testimonial-img" alt="">
+                                        {{-- <img src="assets/img/testimonials/testimonials-2.jpg"
+                                            class="img-fluid testimonial-img" alt=""> --}}
                                     </div>
                                 </div>
                             </div>
@@ -162,8 +156,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 text-center">
-                                        <img src="assets/img/testimonials/testimonials-3.jpg"
-                                            class="img-fluid testimonial-img" alt="">
+                                        {{-- <img src="assets/img/testimonials/testimonials-3.jpg"
+                                            class="img-fluid testimonial-img" alt=""> --}}
                                     </div>
                                 </div>
                             </div>
@@ -191,8 +185,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 text-center">
-                                        <img src="assets/img/testimonials/testimonials-4.jpg"
-                                            class="img-fluid testimonial-img" alt="">
+                                        {{-- <img src="assets/img/testimonials/testimonials-4.jpg"
+                                            class="img-fluid testimonial-img" alt=""> --}}
                                     </div>
                                 </div>
                             </div>
@@ -204,18 +198,14 @@
 
             </div>
         </section><!-- End Testimonials Section -->
-
         <!-- ======= Book A Table Section ======= -->
         <section id="book-a-table" class="book-a-table">
             <div class="container" data-aos="fade-up">
-
                 <div class="section-header">
                     <h2>Book A Table</h2>
                     <p>Book <span>Your Stay</span> With Us</p>
                 </div>
-
                 <div class="row g-0">
-
                     <div class="col-lg-4 reservation-img"
                         style="background-image: url({{ asset('img/reservation.jpg') }});" data-aos="zoom-out"
                         data-aos-delay="200"></div>
@@ -251,7 +241,7 @@
                                             <option value="">-- Pilih Nomor Meja --</option>
                                             @foreach ($tables as $table)
                                                 <option value="{{ $table->id }}"
-                                                    {{ old('nomorMeja') == $table->id ? 'selected' : '' }}>
+                                                    {{ old('nomorMeja') == $table->table_number ? 'selected' : '' }}>
                                                     {{ $table->table_number }}
                                                 </option>
                                             @endforeach

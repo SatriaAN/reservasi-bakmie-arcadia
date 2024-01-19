@@ -25,8 +25,8 @@ class UpdateTablesRequest extends FormRequest
         return [
             'nomorMeja' => [
                 'required',
-                'numeric',
-                Rule::unique('tables','table_number')->ignore($this->idMeja,'id')
+                // 'unique:tables,table_number,except,id'
+                Rule::unique('tables', 'table_number')->ignore($this->nomorMeja,'table_number'),
             ],
             'kapasitasMeja' => 'required|numeric|max:6',
             'statusMeja' => 'required',

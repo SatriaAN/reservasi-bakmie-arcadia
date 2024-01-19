@@ -41,9 +41,9 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                        <strong>{{ $table->table_number }}</strong>
+                                        <strong>Meja - {{ $table->table_number }}</strong>
                                     </td>
-                                    <td>{{ $table->capacity }} </td>
+                                    <td>{{ $table->capacity }} Orang</td>
                                     <td>{{ $table->is_available }} </td>
                                     <td><button onclick="window.location='{{ url('daftar-meja/' . $table->id) }}'"
                                             class="btn btn-sm btn-warning">Ubah</button>

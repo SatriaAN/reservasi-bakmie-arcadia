@@ -16,6 +16,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
@@ -28,7 +29,8 @@
     <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('reservasi/fonts/icomoon/style.css') }}">
+    <link href="{{ asset('css/main-landing.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -60,7 +62,6 @@
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
-
         <div class="container">
             <div class="row gy-3">
                 <div class="col-lg-3 col-md-6 d-flex">
@@ -127,6 +128,12 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <script src="{{ asset('reservasi/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('reservasi/js/popper.min.js') }}"></script>
+    <script src="{{ asset('reservasi/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('reservasi/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('reservasi/js/main.js') }}"></script>
 
 </body>
 

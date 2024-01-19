@@ -6,11 +6,13 @@ use App\Http\Requests\StoreReservationsRequest;
 use App\Models\Reservation;
 use App\Models\Table;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends BaseController
 {
     public function index() {
-        $tables= Table::all();
+        $tables = DB::table('tables')->where('is_available', 'available')
+        ->get();
         return view('landingpage.home',['tables' => $tables ]);
     }
 

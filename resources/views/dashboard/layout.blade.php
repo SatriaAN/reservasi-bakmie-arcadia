@@ -82,12 +82,12 @@
                             <div data-i18n="Analytics">Testimonial</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->is('laporan*') ? 'active' : '' }}">
+                    {{-- <li class="menu-item {{ request()->is('laporan*') ? 'active' : '' }}">
                         <a href="{{ url('/laporan') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-report"></i>
                             <div data-i18n="Analytics">Laporan</div>
                         </a>
-                    </li>
+                    </li> --}}
                     <!-- Kelola Meja -->
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="layouts-without-navbar.html" class="menu-link">
+                                <a href="{{ url('/daftar-meja/tambah') }}" class="menu-link">
                                     <div data-i18n="">+ Tambah Meja</div>
                                 </a>
                             </li>
@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="layouts-without-navbar.html" class="menu-link">
+                                <a href="{{ url('/daftar-reservasi/create') }}" class="menu-link">
                                     <div data-i18n="Without navbar">+ Tambah Reservasi</div>
                                 </a>
                             </li>
@@ -158,7 +158,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ url('/profile') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
@@ -167,7 +167,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
+                                                    <span class="fw-semibold d-block">Admin</span>
                                                     <small class="text-muted">Admin</small>
                                                 </div>
                                             </div>
@@ -220,9 +220,13 @@
 
     <!-- Page JS -->
     <script src="{{ asset('admin/js/dashboards-analytics.js') }}"></script>
+    <!-- Tambahkan ini ke bagian head HTML Anda -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 </body>
 
 </html>

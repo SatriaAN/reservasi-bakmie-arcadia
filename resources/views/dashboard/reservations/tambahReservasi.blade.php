@@ -45,8 +45,8 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('jam') is-invalid @enderror" id="jam" type="time"
-                                    placeholder="Jam Reservasi" data-sb-validations="required" name="jam"
-                                    value="{{ old('jam') }}" />
+                                    placeholder="Jam Reservasi" data-sb-validations="required" min="10:00" max="21:00"
+                                    name="jam" value="{{ old('jam') }}" />
                                 <label for="jam">Jam Reservasi</label>
                                 @error('jam')
                                     <div class="invalid-feedback" data-sb-feedback="jam:required">{{ $message }}

@@ -6,7 +6,7 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h1>Tambah Reservasi</h1>
+            <h1>Ubah Reservasi</h1>
             <!-- Hoverable Table rows -->
             <div class="card">
                 <div class="container px-5 my-5">
@@ -46,8 +46,8 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control @error('jam') is-invalid @enderror" id="jam" type="time"
-                                    placeholder="Jam Reservasi" data-sb-validations="required" name="jam"
-                                    value="{{ $jam }}" />
+                                    placeholder="Jam Reservasi" data-sb-validations="required" name="jam" min="10:00"
+                                    max="21:00" value="{{ $jam }}" />
                                 <label for="jam">Jam Reservasi</label>
                                 @error('jam')
                                     <div class="invalid-feedback" data-sb-feedback="jam:required">{{ $message }}
@@ -85,6 +85,19 @@
                                 @error('nomorMeja')
                                     <div class="invalid-feedback" data-sb-feedback="nomorMeja:required">{{ $message }}
                                     </div>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select @error('status') is-invalid @enderror" id="status"
+                                    name="status">
+                                    <option value="Pending" {{ $status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Disetujui" {{ $status == 'Disetujui' ? 'selected' : '' }}>Disetujui
+                                    </option>
+                                    <option value="Ditolak" {{ $status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                </select>
+                                <label for="status">Status</label>
+                                @error('status')
+                                    <div class="invalid-feedback" data-sb-feedback="status:required">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">

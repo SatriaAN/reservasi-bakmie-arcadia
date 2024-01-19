@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateReservationsRequest;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Reservation;
 use App\Models\Table;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends BaseController
 {
@@ -17,7 +18,8 @@ class ReservationController extends BaseController
 
 
     public function create() {
-        $tables = Table::all();
+        $tables = DB::table('tables')->where('is_available', 'available')
+            ->get();
         return view('dashboard.reservations.tambahReservasi', compact('tables'));
     }
 
@@ -37,7 +39,8 @@ class ReservationController extends BaseController
     }
 
     public function show(Reservation $reservation, $id) {
-        $tables = Table::all();
+        $tables = DB::table('tables')->where('is_available', 'available')
+        ->get();
         $data = $reservation->find($id);
         return view('dashboard.reservations.editReservasi',compact('tables'))->with([
             'idReservasi' => $data->id,
@@ -47,6 +50,7 @@ class ReservationController extends BaseController
             'jam' => $data->reservation_time,
             'jumlahOrang' => $data->party_size,
             'nomorMeja' => $data->tables_id,
+            'status' => $data->status,
             'catatan' => $data->pesan,
         ]);
     }
@@ -60,11 +64,31 @@ class ReservationController extends BaseController
         $data->reservation_time = $request->jam;
         $data->party_size = $request->jumlahOrang;
         $data->tables_id = $request->nomorMeja;
+        $data->status = $request->status;
         $data->pesan = $request->catatan;
         $data->save();
 
         return redirect('daftar-reservasi')->with('msg','Data Reservasi '. $data->name .' berhasil diubah');
     }
+
+    public function accept($id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->status = 'disetujui';
+        $reservation->save();
+
+        return redirect('daftar-reservasi')->with('msg','Data Reservasi '. $reservation->name .' berhasil diubah');
+    }
+
+    public function reject($id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->status = 'ditolak';
+        $reservation->save();
+
+        return redirect('daftar-reservasi')->with('msg','Data Reservasi '. $reservation->name .' berhasil diubah');
+    }
+    
 
     public function destroy(Reservation $reservation, $id) {
         $data = $reservation->find($id);
