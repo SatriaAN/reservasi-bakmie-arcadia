@@ -6,7 +6,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard.index') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <div class="avatar avatar-online">
+                            <img width="50/100" src="{{ asset('img/avatar_dashboard.png') }}" alt
+                                class="w-px-40 h-auto rounded-circle" />
+                        </div>
                     </a>
                 </div>
 

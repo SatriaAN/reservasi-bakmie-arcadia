@@ -95,7 +95,7 @@
                                     <td>
                                         <div class="btn-container">
                                             <button onclick="window.location='{{ url('daftar-reservasi/' . $res->id) }}'"
-                                                class="btn btn-sm btn-warning">Ubah</button>
+                                                class="btn btn-sm btn-warning"><i class='bx bxs-edit'></i> Ubah</button>
                                         </div>
                                         <div class="btn-container">
                                             <form onsubmit="return deleteData('{{ $res->name }}')"
@@ -103,8 +103,8 @@
                                                 action="{{ url('daftar-reservasi/' . $res->id) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Hapus Data"
-                                                    class="btn btn-sm btn-danger">Hapus</button>
+                                                <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
+                                                    <i class='bx bx-trash'></i> Hapus</button>
                                             </form>
                                         </div>
                                     </td>

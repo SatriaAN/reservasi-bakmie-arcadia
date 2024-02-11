@@ -13,7 +13,9 @@ class HomeController extends BaseController
     public function index() {
         $tables = DB::table('tables')->where('is_available', 'available')
         ->get();
-        return view('landingpage.home',['tables' => $tables ]);
+        $testimoni = DB::table('testimonials')->get();
+
+        return view('landingpage.home',['tables' => $tables,'testimoni'=> $testimoni ]);
     }
 
     public function store(StoreReservationsRequest $request) {

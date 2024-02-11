@@ -21,7 +21,6 @@ class DashboardController extends BaseController
     View::composer('dashboard.layout', function ($view) {
         $users = User::all(); 
         $view->with('users', $users);
-        dd($view);
     });
 }
 }

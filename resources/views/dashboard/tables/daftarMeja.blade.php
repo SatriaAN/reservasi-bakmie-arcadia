@@ -44,16 +44,24 @@
                                         <strong>Meja - {{ $table->table_number }}</strong>
                                     </td>
                                     <td>{{ $table->capacity }} Orang</td>
-                                    <td>{{ $table->is_available }} </td>
+                                    <td>
+                                        <div style="display: inline-block; font-size: 0.875rem;">
+                                            @if ($table->is_available == 'available')
+                                                <span class="badge bg-label-success me-1">{{ $table->is_available }}</span>
+                                            @elseif ($table->is_available == 'not_available')
+                                                <span class="badge bg-label-danger me-1">{{ $table->is_available }}</span>
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td><button onclick="window.location='{{ url('daftar-meja/' . $table->id) }}'"
-                                            class="btn btn-sm btn-warning">Ubah</button>
+                                            class="btn btn-sm btn-warning"><i class='bx bxs-edit'></i> Ubah</button>
                                         <form onsubmit="return deleteData('{{ $table->table_number }}')"
                                             style="display: inline"method="POST"
                                             action="{{ url('daftar-meja/' . $table->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
-                                                Hapus
+                                                <i class='bx bx-trash'></i> Hapus
                                             </button>
                                         </form>
                                     </td>

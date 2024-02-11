@@ -52,14 +52,14 @@
                                     <td>{{ $testimoni->profesi }}</td>
                                     <td class="testimoni">{{ $testimoni->testimoni }}</td>
                                     <td><button onclick="window.location='{{ url('testimonials/' . $testimoni->id) }}'"
-                                            class="btn btn-sm btn-warning">Ubah</button>
+                                            class="btn btn-sm btn-warning"><i class='bx bxs-edit'></i> Ubah</button>
                                         <form onsubmit="return deleteData('{{ $testimoni->nama }}')"
                                             style="display: inline"method="POST"
                                             action="{{ url('testimonials/' . $testimoni->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" title="Hapus Data" class="btn btn-sm btn-danger">
-                                                Hapus
+                                                <i class='bx bx-trash'></i> Hapus
                                             </button>
                                         </form>
                                     </td>
